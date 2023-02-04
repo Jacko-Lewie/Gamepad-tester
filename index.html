@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Jackson Lewis">
+		<title>Gamepad Test</title>
+
+        <!-- Style CSS -->
+		<link rel="stylesheet" href="./style.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon_io/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./img/favicon_io/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./img/favicon_io/favicon-16x16.png">
+		<link rel="manifest" href="./img/favicon_io/site.webmanifest">
+	
+	<script>
+		window.addEventListener("gamepadconnected", function() {
+			gp=navigator.getGamepads();
+		});
+	
+		window.addEventListener("gamepaddisconnected", function() {
+			gp=navigator.getGamepads();
+		});
+	
+		function poll() {
+			var i,j,b,gp,numButtons,numAxes,s="";
+			var decodeWired=[1,3,2,4,5],decodeWireless=[1,2,4,8,4096];
+			var colour=['WHITE','RED','BLUE','YELLOW','BLACK'];
+			for (i=0;i<10;i++) {
+				gp=navigator.getGamepads()[i];
+				if (gp) {
+					s += "<div class='gamePad'><div class='iDItem'>"+ gp.id+"</div><div class='aRow'>";
+					s += "<div class='indexItem'><p>Index"+i+"</p></div><div class='connectItem'><p>Connected ";
+					if (gp.connected) s += "Yes";
+					else s += "No";
+					s += "</p></div><div class='tSItem'><p>Timestamp "+gp.timestamp.toFixed(3)+"</p></div></div>";
+					numButtons=gp.buttons.length;
+					numAxes=gp.axes.length;
+					if (numButtons != 0){
+						s += "<div class='aRow'>";
+						for (j=0;j<numButtons;j++) {
+							s += "<div class='buttonItem";
+							if (gp.buttons[j].pressed) {
+								b="1";
+								s += " active";
+							}
+							else {
+								b="0";
+							}
+							s += "'><p>Button "+j+"</p><p>"+b+"</p></div>";
+						}
+					}
+					if (numAxes != 0){
+						s += "</div><div class='aRow axisRow'>";
+						for (j=0;j<numAxes;j++) {
+							s += "<div class='axisItem";
+							if (gp.axes[j] > .5 || gp.axes[j] < -.5) s += " active";
+							s += "'><p>Axis "+j+"</p><p>"+(gp.axes[j]).toFixed(5)+"</p></div>";
+						}
+					}
+				}
+			}
+			document.getElementById("content").innerHTML=s;
+			requestAnimationFrame(poll);
+		}
+	</script>
+</head>
+<body class="body" onload="poll()">
+<div class="outerBox">
+	<span class="heading">Gamepads Test</span>
+	<span id="content"></span>
+</div>
+
+<footer>
+	 <div class="content-wrapper">
+	<p> Ver:1.0 Jackson Lewis </p>
+</div>
+</footer>
+</body>
+</html>

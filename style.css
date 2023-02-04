@@ -1,0 +1,85 @@
+.body {
+    background:#000000;
+    font-family:"Helvetica";
+}
+.outerBox {
+    background:white;
+    width:938px;
+    margin:auto;
+    border:2px solid black;
+    border-radius:4px;
+    display:flex;
+    padding:5px;
+    flex-direction:column;
+}
+.heading {
+    font-size:40px;
+    font-weight:bold;
+    color:#4f4f4f;
+}
+.gamePad {
+    background:#efebef;
+    margin:10px 1px 0px 1px;
+}
+.aRow {
+    margin:0px;
+}
+.iDItem {
+    font-size:20px;
+    color:#4f4f4f;
+    padding:5px 0px 0px 5px;
+}
+.indexItem,.connectItem,.tSItem,.buttonItem,.axisItem {
+    display:inline-block;
+    margin:2px 1px;
+    font-family:sans-serif;
+    text-align:center;
+}
+.indexItem {
+    width:76px;
+    margin-top:2px;
+}
+.connectItem {
+    width:154px;
+    margin-top:2px;
+}
+.tSItem {
+    width:310px;
+    margin-top:2px;
+}
+.buttonItem {
+    width:76px;
+    margin-top:0px;
+}
+.axisItem {
+    width:115px;
+    margin-top:0px;
+}
+.indexItem p,.connectItem p,.tSItem p,.buttonItem p,.axisItem p {
+    margin:auto;
+    padding:5px;
+    background:#a2a2a2;
+    font-size:15px;
+}
+.buttonItem p,.axisItem p {
+    margin:auto;
+    padding:5px;
+    font-size:15px;
+}
+p:not(:first-child) {
+    padding-top:0px;
+}
+.active p {
+    background:black;
+    color:white;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #EEEEEE;
+    padding: 20px 0;
+    width: 100%;
+    color:#EEEEEE;
+  }
+  
